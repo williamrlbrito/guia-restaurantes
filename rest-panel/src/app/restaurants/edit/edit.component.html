@@ -1,0 +1,162 @@
+<div class="row">
+    <div class="col s12">
+        <h4><i class="material-icons">keyboard_arrow_right</i>Restaurante
+            <small class="grey-text">atualize os dados do restaurante</small>
+        </h4>
+    </div>
+
+    <div class="col s9">
+        <form class="row" (submit)="save($event)">
+            <div class="input-field col s12">
+                <input id="name"
+                       type="text"
+                       name="name"
+                       placeholder="Nome"
+                       [(ngModel)]="restaurant.name">
+                <label for="name">Nome do restaurante</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea name="description"
+                          id="description"
+                          class="materialize-textarea"
+                          placeholder="Descrição"
+                          [(ngModel)]="restaurant.description">
+                </textarea>
+                <label for="description">Descrição do restaurante</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="cep"
+                       type="text"
+                       name="cep"
+                       placeholder="CEP"
+                       [(ngModel)]="address.cep"
+                       (keyup)="searchCep()">
+                <label for="cep">CEP</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="address"
+                       type="text"
+                       name="address"
+                       placeholder="Endereço"
+                       [(ngModel)]="address.address">
+                <label for="address">Endereço</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="number"
+                       type="text"
+                       name="number"
+                       placeholder="Número"
+                       [(ngModel)]="address.number">
+                <label for="number">Número</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="city"
+                       type="text"
+                       name="city"
+                       placeholder="Cidade"
+                       [(ngModel)]="address.city">
+                <label for="city">Cidade</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="neighborhood"
+                       type="text"
+                       name="neighborhood"
+                       placeholder="Bairro"
+                       [(ngModel)]="address.neighborhood">
+                <label for="neighborhood">Bairro</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="state"
+                       type="text"
+                       name="state"
+                       placeholder="Uf"
+                       [(ngModel)]="address.state">
+                <label for="state">Uf</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="complement"
+                       type="text"
+                       name="complement"
+                       placeholder="Complemento"
+                       [(ngModel)]="address.complement">
+                <label for="complement">Complemento</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="submit"
+                       value="Salvar"
+                       class="btn">
+            </div>
+        </form>
+    </div>
+
+    <div class="col s3">
+        <div class="card-panel grey white-text center-align photo-changer"
+             [ngClass]="{'lighten-1': dragging}"
+             (click)="file.click()"
+             (drop)="upload($event)"
+             (dragover)="dragover($event)"
+             (dragleave)="dragging = false">
+
+            <i class="material-icons">insert_photo</i>
+            <p *ngIf="!dragging; else release">Arraste sua foto aqui ou clique para enviar</p>
+            <ng-template #release><p>Solte para enviar</p></ng-template>
+            <input type="file" accept="image/*" #file style="display: none">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s12 margin-bottom">
+                        <span class="card-title">Fotos do restaurantes</span>
+                    </div>
+
+                    <div class="col s3 margin-bottom">
+                        <img class="materialboxed responsive-img" width="650"
+                             src="//materializecss.com/images/sample-1.jpg">
+                        <a class="btn"><i class="material-icons">cancel</i></a>
+                    </div>
+
+                    <div class="col s3 margin-bottom">
+                        <img class="materialboxed responsive-img" width="650"
+                             src="//materializecss.com/images/sample-1.jpg">
+                        <a class="btn"><i class="material-icons">cancel</i></a>
+                    </div>
+
+                    <div class="col s3 margin-bottom">
+                        <img class="materialboxed responsive-img" width="650"
+                             src="//materializecss.com/images/sample-1.jpg">
+                        <a class="btn"><i class="material-icons">cancel</i></a>
+                    </div>
+
+                    <div class="col s3 margin-bottom">
+                        <img class="materialboxed responsive-img" width="650"
+                             src="//materializecss.com/images/sample-1.jpg">
+                        <a class="btn"><i class="material-icons">cancel</i></a>
+                    </div>
+
+                    <div class="col s3 margin-bottom">
+                        <img class="materialboxed responsive-img" width="650"
+                             src="//materializecss.com/images/sample-1.jpg">
+                        <a class="btn"><i class="material-icons">cancel</i></a>
+                    </div>
+                </div>
+
+                <div class="card-action">
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Foto</span>
+                            <input type="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

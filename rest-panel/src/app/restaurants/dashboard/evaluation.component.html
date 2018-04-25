@@ -1,0 +1,49 @@
+<div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12">
+                <h4>Detalhes da aveliação</h4>
+            </div>
+
+            <div class="col s6">
+                <h5>Avaliação</h5>
+                <ul>
+                    <li>
+                        <strong>nome:</strong> William Brito
+                    </li>
+                    <li>
+                        <strong>strelas:</strong>
+                        <i class="material-icons red-text">star</i>
+                        <i class="material-icons red-text">star</i>
+                        <i class="material-icons red-text">star</i>
+                        <i class="material-icons red-text">star</i>
+                    </li>
+                    <li>
+                        <strong>descrição:</strong>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                            mollit anim id est laborum
+                        </p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col s6">
+                <h5>Resposta</h5>
+                <form (submit)="save($event)">
+                    <div class="input-field">
+                        <textarea id="reply" class="materialize-textarea"></textarea>
+                        <label for="reply">Sua resposta</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="submit" value="Salvar" class="btn">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
