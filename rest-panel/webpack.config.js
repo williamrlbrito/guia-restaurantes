@@ -407,10 +407,10 @@ module.exports = {
             "sourceMap": true,
             "filename": "scripts.bundle.js",
             "scripts": [
-                "C:\\Users\\willi\\Desktop\\projects\\guia-restaurantes\\rest-panel\\node_modules\\jquery\\dist\\jquery.js",
-                "C:\\Users\\willi\\Desktop\\projects\\guia-restaurantes\\rest-panel\\node_modules\\materialize-css\\dist\\js\\materialize.js"
+                "C:\\Users\\Development\\projects\\guia-restaurantes\\rest-panel\\node_modules\\jquery\\dist\\jquery.js",
+                "C:\\Users\\Development\\projects\\guia-restaurantes\\rest-panel\\node_modules\\materialize-css\\dist\\js\\materialize.js"
             ],
-            "basePath": "C:\\Users\\willi\\Desktop\\projects\\guia-restaurantes\\rest-panel"
+            "basePath": "C:\\Users\\Development\\projects\\guia-restaurantes\\rest-panel"
         }),
         new CopyWebpackPlugin([
             {

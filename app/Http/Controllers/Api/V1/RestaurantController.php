@@ -45,7 +45,6 @@ class RestaurantController extends Controller
     public function upload(Request $request, $id)
     {
         $result = $this->model->findOrFail($id);
-        dd($request);
         $data['photo'] = $request->file('photo');
         $result->update($data);
         return response()->json($result);
