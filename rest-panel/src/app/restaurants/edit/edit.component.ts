@@ -18,14 +18,15 @@ export class EditComponent implements OnInit {
     constructor(
         protected appHttpService: AppHttpService,
         protected httpService: RestaurantService
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
-        this.appHttpService.getUser()
+        this.appHttpService
+            .getUser()
             .then((res) => {
                 let id = res.restaurant.id;
-                this.httpService.builder()
+                this.httpService
+                    .builder()
                     .view(id)
                     .then((res) => {
                         this.restaurant = res;
@@ -58,7 +59,8 @@ export class EditComponent implements OnInit {
         let formData = new FormData();
         formData.append('photo', image_url);
 
-        this.httpService.builder()
+        this.httpService
+            .builder()
             .upload(this.restaurant.id + '/upload', formData)
             .then(() => {
                 this.upload_status = 'success';
@@ -77,7 +79,8 @@ export class EditComponent implements OnInit {
     searchCep() {
         let cep = this.address.cep || null;
         if (cep && cep.length === 8) {
-            this.httpService.getCep(cep)
+            this.httpService
+                .getCep(cep)
                 .then((res) => {
                     this.address.address = res.logradouro;
                     this.address.city = res.localidade;
@@ -89,14 +92,16 @@ export class EditComponent implements OnInit {
 
     save(e) {
         e.preventDefault();
-        this.httpService.builder()
+        this.httpService
+            .builder()
             .update(this.restaurant.id, this.restaurant)
             .then(() => {
-                return this.httpService.builder('/' + this.restaurant.id + '/address')
+                return this.httpService
+                    .builder('/' + this.restaurant.id + '/address')
                     .insert(this.address);
             }).then(() => {
                 window.Materialize.toast('Salvo com sucesso.', 3000);
-        });
+            });
     }
 
     preparePhoto(e){
@@ -113,7 +118,8 @@ export class EditComponent implements OnInit {
             return;
         }
 
-        this.httpService.builder()
+        this.httpService
+            .builder()
             .upload('photos', this.restaurantPhoto)
             .then(() => {
                 return this.httpService
@@ -127,7 +133,8 @@ export class EditComponent implements OnInit {
     }
 
     deletePhoto(photo){
-        this.httpService.builder('/photos')
+        this.httpService
+            .builder('/photos')
             .delete(photo.id)
             .then(() => {
                 return this.httpService

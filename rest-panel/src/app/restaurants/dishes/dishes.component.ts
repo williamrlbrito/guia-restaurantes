@@ -33,4 +33,11 @@ export class DishesComponent implements OnInit{
                 this.httpService.eventEmitter.emit();
             });
     }
+
+    remove(id: number){
+        this.httpService
+            .builder()
+            .delete(id)
+            .then(() => this.httpService.eventEmitter.emit());
+    }
 }

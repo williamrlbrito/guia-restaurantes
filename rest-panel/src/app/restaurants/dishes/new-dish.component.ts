@@ -32,6 +32,11 @@ export class NewDishComponent implements OnInit{
     save(e){
         e.preventDefault();
         
+        if (!this.dish.photo) {
+            window.Materialize.toast('Selecione uma imagem antes', 3000, 'red');
+            return;
+        }
+        
         let formData = new FormData;
         formData.append('photo', this.dish.photo);
         formData.append('name', this.dish.name);
@@ -39,7 +44,8 @@ export class NewDishComponent implements OnInit{
         formData.append('price', this.dish.price);
         formData.append('restaurant_id', this.dish.restaurant_id);
 
-        this.httpService.builder()
+        this.httpService
+            .builder()
             .insert(formData)
             .then(() => {
                 this.httpService.eventEmitter.emit();
