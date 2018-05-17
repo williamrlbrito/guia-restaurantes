@@ -11,6 +11,7 @@ export class EditComponent implements OnInit {
     restaurant: any = {};
     address: any = {};
     upload_status: string = 'not';
+    restaurantPhoto: any = null;
 
     constructor(
         protected appHttpService: AppHttpService,
@@ -88,5 +89,24 @@ export class EditComponent implements OnInit {
         });
     }
 
+    preparePhoto(e){
+        let image_url = e.target.files[0];
+        let formData = new FormData();
+        formData.append('restaurant_id', this.restaurant.id);
+        formData.append('url', image_url);
+        this.restaurantPhoto = formData;
+    }
 
+    sendPhoto(){
+        if (this.restaurantPhoto === null) {
+            window.Materialize.toast('Selecione uma imagem antes', 3000, 'red');
+            return;
+        }
+
+        this.httpService.builder()
+            .upload('photos', this.restaurantPhoto)
+            .then(() => {
+                console.log('enviou');
+            });
+    }
 }

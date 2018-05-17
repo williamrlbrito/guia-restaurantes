@@ -130,40 +130,21 @@
                              src="//materializecss.com/images/sample-1.jpg">
                         <a class="btn"><i class="material-icons">cancel</i></a>
                     </div>
-
-                    <div class="col s3 margin-bottom">
-                        <img class="materialboxed responsive-img" width="650"
-                             src="//materializecss.com/images/sample-1.jpg">
-                        <a class="btn"><i class="material-icons">cancel</i></a>
-                    </div>
-
-                    <div class="col s3 margin-bottom">
-                        <img class="materialboxed responsive-img" width="650"
-                             src="//materializecss.com/images/sample-1.jpg">
-                        <a class="btn"><i class="material-icons">cancel</i></a>
-                    </div>
-
-                    <div class="col s3 margin-bottom">
-                        <img class="materialboxed responsive-img" width="650"
-                             src="//materializecss.com/images/sample-1.jpg">
-                        <a class="btn"><i class="material-icons">cancel</i></a>
-                    </div>
-
-                    <div class="col s3 margin-bottom">
-                        <img class="materialboxed responsive-img" width="650"
-                             src="//materializecss.com/images/sample-1.jpg">
-                        <a class="btn"><i class="material-icons">cancel</i></a>
-                    </div>
                 </div>
 
                 <div class="card-action">
-                    <div class="file-field input-field">
-                        <div class="btn">
-                            <span>Foto</span>
-                            <input type="file">
+                    <div class="row">
+                        <div class="file-field input-field col s9">
+                            <div class="btn">
+                                <span>Foto</span>
+                                <input type="file" (change)="preparePhoto($event)">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
                         </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
+                        <div class="input-field col s3 right-aling">
+                            <input type="submit" value="Enviar" class="btn" (click)="sendPhoto()">
                         </div>
                     </div>
                 </div>
