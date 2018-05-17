@@ -7,10 +7,12 @@ import { AppHttpService } from '../../app-http.service';
     templateUrl: './dishes.component.html'
 })
 export class DishesComponent implements OnInit{
+    dishes: any = {};
     constructor(
         private httpService: DishesService,
         protected authService: AppHttpService
     ){}
+
     ngOnInit(){
         this.authService.getUser()
             .then((res) => {
@@ -20,9 +22,15 @@ export class DishesComponent implements OnInit{
                         {restaurant_id: id}
                     ]
                 }
-                this.httpService.builder()
-                    .list(options);
+                
+                this.httpService.eventEmitter
+                    .subscribe(() => {
+                        this.httpService.builder()
+                            .list(options)
+                            .then((res) => this.dishes = res);
+                    });
 
+                this.httpService.eventEmitter.emit();
             });
     }
 }

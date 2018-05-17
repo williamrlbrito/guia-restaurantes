@@ -10,87 +10,19 @@
         </p>
     </div>
 
-    <div class="col s12 m4">
+    <div class="col s12 m4" *ngFor="let dish of dishes.data">
         <div class="card">
             <div class="card-image">
-                <img src="//materializecss.com/images/sample-1.jpg">
-                <span class="card-title">Prato</span>
-                <a [routerLink]="['edit/1']" class="btn-floating halfway-fab red">
+                <img src="{{ dish.photo_full_url }}">
+                <span class="card-title">{{ dish.name }}</span>
+                <a [routerLink]="['edit/' + dish.id]" class="btn-floating halfway-fab red">
                     <i class="material-icons">edit</i>
                 </a>
             </div>
             <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.</p>
+                <p>{{ dish.description }}</p>
                 <hr>
-                <p>R$ 30,00</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="col s12 m4">
-        <div class="card">
-            <div class="card-image">
-                <img src="//materializecss.com/images/sample-1.jpg">
-                <span class="card-title">Prato</span>
-                <a [routerLink]="['edit/1']" class="btn-floating halfway-fab red">
-                    <i class="material-icons">edit</i>
-                </a>
-            </div>
-            <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.</p>
-                <hr>
-                <p>R$ 30,00</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="col s12 m4">
-        <div class="card">
-            <div class="card-image">
-                <img src="//materializecss.com/images/sample-1.jpg">
-                <span class="card-title">Prato</span>
-                <a [routerLink]="['edit/1']" class="btn-floating halfway-fab red">
-                    <i class="material-icons">edit</i>
-                </a>
-            </div>
-            <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.</p>
-                <hr>
-                <p>R$ 30,00</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="col s12 m4">
-        <div class="card">
-            <div class="card-image">
-                <img src="//materializecss.com/images/sample-1.jpg">
-                <span class="card-title">Prato</span>
-                <a [routerLink]="['edit/1']" class="btn-floating halfway-fab red">
-                    <i class="material-icons">edit</i>
-                </a>
-            </div>
-            <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.</p>
-                <hr>
-                <p>R$ 30,00</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="col s12 m4">
-        <div class="card">
-            <div class="card-image">
-                <img src="//materializecss.com/images/sample-1.jpg">
-                <span class="card-title">Prato</span>
-                <a [routerLink]="['edit/1']" class="btn-floating halfway-fab red">
-                    <i class="material-icons">edit</i>
-                </a>
-            </div>
-            <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.</p>
-                <hr>
-                <p>R$ 30,00</p>
+                <p>R$ {{ dish.price }}</p>
             </div>
         </div>
     </div>
