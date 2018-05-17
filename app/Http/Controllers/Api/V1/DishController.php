@@ -28,12 +28,12 @@ class DishController extends Controller
         $this->model = $model;
     }
 
-    public function index(Request $request, $id)
-    {
-        $results = $this->model
-            ->where('restaurant_id', $id)
-            ->get();
+    // public function index(Request $request, $id)
+    // {
+    //     $results = $this->model
+    //         ->where('restaurant_id', $id)
+    //         ->get();
 
-            return response()->json($results);
-    }
+    //         return response()->json($results);
+    // }
 }

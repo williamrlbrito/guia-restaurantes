@@ -5,7 +5,7 @@ import { AppHttpService } from '../../app-http.service';
 export class DishesService extends AppHttpService {
     eventEmitter: EventEmitter<any> = new EventEmitter;
 
-    builder(resource: string) {
+    builder(resource: string = '') {
         return super.builder('dishes' + resource);
     }
 

@@ -8,8 +8,21 @@ import { AppHttpService } from '../../app-http.service';
 })
 export class DishesComponent implements OnInit{
     constructor(
-        private appHttpService: AppHttpService,
-        private httpService: DishesService
+        private httpService: DishesService,
+        protected authService: AppHttpService
     ){}
-    ngOnInit(){}
+    ngOnInit(){
+        this.authService.getUser()
+            .then((res) => {
+                let id = res.restaurant.id;
+                let options = {
+                    filters: [
+                        {restaurant_id: id}
+                    ]
+                }
+                this.httpService.builder()
+                    .list(options);
+
+            });
+    }
 }

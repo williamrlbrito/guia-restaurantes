@@ -33,8 +33,18 @@ export class AppHttpService {
         return this;
     }
 
-    list(options: Object = {}) {
-        return this.http.get(this.url, {headers: this.header})
+    list(options: any = {}) {
+        let url = this.url;
+        if (options.filters !== undefined) {
+            let filters = options.filters;
+            filters.forEach((item, index) => {
+                let field = Object.keys(item)[0];
+                let value = item[field];
+                url = url + '?where[' + field + ']=' + value;
+            });
+        }
+        
+        return this.http.get(url, {headers: this.header})
             .toPromise()
             .then((res) => {
                 return res.json() || {};
