@@ -13,6 +13,7 @@ import {EditComponent} from "./edit/edit.component";
 import {PasswordComponent} from "./password/password.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {RestaurantService} from "./restaurant.service";
+import {DishesService} from './dishes/dishes.service';
 
 
 const appRoutes: Routes = [
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
         ProfileComponent
     ],
     providers: [
-        RestaurantService
+        RestaurantService,
+        DishesService
     ]
 })
 export class RestaurantModule {
