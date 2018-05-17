@@ -90,8 +90,14 @@
     </div>
 
     <div class="col s3">
-        <div class="card-panel grey white-text center-align photo-changer"
-             [ngClass]="{'lighten-1': dragging}"
+        <div class="card-panel white-text center-align photo-changer"
+             [ngClass]="{
+                 'lighten-1': dragging,
+                 'grey': upload_status === 'not',
+                 'amber': upload_status === 'sending',
+                 'green': upload_status === 'success',
+                 'red': upload_status === 'error'
+                }"
              (click)="file.click()"
              (drop)="upload($event)"
              (dragover)="dragover($event)"
@@ -99,7 +105,12 @@
 
             <i class="material-icons">insert_photo</i>
             <p *ngIf="!dragging; else release">Arraste sua foto aqui ou clique para enviar</p>
-            <ng-template #release><p>Solte para enviar</p></ng-template>
+            <ng-template #release>
+                <p *ngIf="upload_status === 'not'">Solte para enviar</p>
+                <p *ngIf="upload_status === 'sending'">Enviando, aguarde...</p>
+                <p *ngIf="upload_status === 'success'">Enviado com sucesso, você pode arrastar ou clicar aqui para enviar outro</p>
+                <p *ngIf="upload_status === 'error'">Erro ao enviar, tente novamente ou contate o administrador do sistema</p>
+            </ng-template>
             <input type="file" accept="image/*" #file style="display: none">
         </div>
     </div>
