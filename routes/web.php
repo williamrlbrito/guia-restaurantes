@@ -18,14 +18,18 @@ $app->get('/', function () use ($app) {
 
 $app->group(['prefix' => 'api/v1', 'namespace' => 'Api\V1', 'middleware' => ['auth']], function () use ($app) {
     $app->get('restaurants', 'RestaurantController@index');
-    $app->get('restaurants/{restaurant}', 'RestaurantController@show');
+    $app->get('restaurants/{id:[0-9]+}', 'RestaurantController@show');
     $app->post('restaurants', 'RestaurantController@store');
-    $app->post('restaurants/{restaurant}', 'RestaurantController@update');
-    $app->put('restaurants/{restaurant}', 'RestaurantController@update');
-    $app->delete('restaurants/{restaurant}', 'RestaurantController@destroy');
+    $app->post('restaurants/{id:[0-9]+}', 'RestaurantController@update');
+    $app->put('restaurants/{id:[0-9]+}', 'RestaurantController@update');
+    $app->delete('restaurants/{id:[0-9]+}', 'RestaurantController@destroy');
 
-    $app->post('restaurants/{restaurant}/address', 'RestaurantController@address');
-    $app->post('restaurants/{restaurant}/upload', 'RestaurantController@upload');
+    $app->post('restaurants/{id:[0-9]+}/address', 'RestaurantController@address');
+    $app->post('restaurants/{id:[0-9]+}/upload', 'RestaurantController@upload');
+
+    $app->get('restaurants/{id:[0-9]+}/photos', 'RestaurantPhotoController@index');
+    $app->post('restaurants/photos', 'RestaurantPhotoController@store');
+    $app->delete('restaurants/photos/{id:[0-9]+}', 'RestaurantPhotoController@destroy');
 
     $app->get('auth/me', 'AuthController@me');
 });
