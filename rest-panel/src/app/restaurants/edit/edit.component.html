@@ -125,10 +125,10 @@
                         <span class="card-title">Fotos do restaurantes</span>
                     </div>
 
-                    <div class="col s3 margin-bottom">
+                    <div class="col s3 margin-bottom" *ngFor="let photo of photos">
                         <img class="materialboxed responsive-img" width="650"
-                             src="//materializecss.com/images/sample-1.jpg">
-                        <a class="btn"><i class="material-icons">cancel</i></a>
+                             src="{{ photo.full_url }}">
+                        <a class="btn" (click)="deletePhoto(photo)"><i class="material-icons">cancel</i></a>
                     </div>
                 </div>
 

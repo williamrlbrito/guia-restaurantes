@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppHttpService} from "../../app-http.service";
 import {RestaurantService} from "../restaurant.service";
+import * as jQuery from 'jquery';
 
 @Component({
     selector: 'app-edit',
@@ -9,6 +10,7 @@ import {RestaurantService} from "../restaurant.service";
 export class EditComponent implements OnInit {
     dragging: boolean = false;
     restaurant: any = {};
+    photos: any = [];
     address: any = {};
     upload_status: string = 'not';
     restaurantPhoto: any = null;
@@ -29,7 +31,15 @@ export class EditComponent implements OnInit {
                         this.restaurant = res;
                         this.address = res.address || {};
                         window.Materialize.updateTextFields();
+
+                        return this.httpService
+                            .builder('/' + this.restaurant.id + '/photos')
+                            .list();
                     })
+                    .then((res) => {
+                        this.photos = res;
+                        this.materialBoxStart();
+                    });
             });
     }
 
@@ -106,7 +116,31 @@ export class EditComponent implements OnInit {
         this.httpService.builder()
             .upload('photos', this.restaurantPhoto)
             .then(() => {
-                console.log('enviou');
+                return this.httpService
+                    .builder('/' + this.restaurant.id + '/photos')
+                    .list();
+            })
+            .then((res) => {
+                this.photos = res;
+                this.materialBoxStart();
             });
+    }
+
+    deletePhoto(photo){
+        this.httpService.builder('/photos')
+            .delete(photo.id)
+            .then(() => {
+                return this.httpService
+                    .builder('/' + this.restaurant.id + '/photos')
+                    .list();
+            })
+            .then((res) => {
+                this.photos = res;
+                this.materialBoxStart();
+            });
+    }
+
+    private materialBoxStart() {
+        setTimeout(() => jQuery('.materialboxed').materialbox(), 1000);
     }
 }

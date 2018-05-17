@@ -61,10 +61,20 @@ export class AppHttpService {
             });
     }
 
-    insert(data) {
+    insert(data: object) {
         return this
             .http
             .post(this.url, data, {headers: this.header})
+            .toPromise()
+            .then((res) => {
+                return res.json() || {};
+            });
+    }
+
+    delete(id: number) {
+        return this
+            .http
+            .delete(this.url + '/' + id, {headers: this.header})
             .toPromise()
             .then((res) => {
                 return res.json() || {};
