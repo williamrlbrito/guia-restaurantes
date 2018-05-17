@@ -31,5 +31,11 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'Api\V1', 'middleware' => ['au
     $app->post('restaurants/photos', 'RestaurantPhotoController@store');
     $app->delete('restaurants/photos/{id:[0-9]+}', 'RestaurantPhotoController@destroy');
 
+    $app->get('dishes', 'DishController@index');
+    $app->get('dishes/{id:[0-9]+}', 'DishController@show');
+    $app->post('dishes', 'DishController@store');
+    $app->post('dishes/{id:[0-9]+}', 'DishController@update');
+    $app->delete('dishes/{id:[0-9]+}', 'DishController@destroy');
+
     $app->get('auth/me', 'AuthController@me');
 });
