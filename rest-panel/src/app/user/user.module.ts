@@ -5,6 +5,7 @@ import {FormsModule} from "@angular/forms"
 
 import {PasswordComponent} from "./password/password.component";
 import {ProfileComponent} from "./profile/profile.component";
+import { AuthService } from './services/auth.service';
 
 
 const appRoutes: Routes = [
@@ -22,7 +23,9 @@ const appRoutes: Routes = [
         PasswordComponent,
         ProfileComponent
     ],
-    providers: []
+    providers: [
+        AuthService
+    ]
 })
 export class UserModule {
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as jQuery from 'jquery';
 import {Router} from "@angular/router";
-import { AppHttpService } from '../../app-http.service';
 import { DishesService } from '../services/dishes.service';
+import { AuthService } from '../../user/services/auth.service';
 
 @Component({
     selector: 'app-new-dish',
@@ -13,7 +13,7 @@ export class NewDishComponent implements OnInit{
     constructor(
         private router: Router, 
         private httpService: DishesService,
-        protected authService: AppHttpService
+        protected authService: AuthService
     ) {}
     ngOnInit(){
         jQuery('.modal').modal({complete: () => this.router.navigate(['/dishes'])});
