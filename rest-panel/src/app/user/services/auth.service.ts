@@ -13,4 +13,12 @@ export class AuthService extends AppHttpService {
         return this.builder('/me')
             .list();
     }
+
+    changePassword(data: any){
+        let observable = this.http.post(this.url + '/change-password', data, {headers: this.header});
+        return observable.toPromise()
+            .then((res) => {
+                return res.json() || {};
+            });
+    }
 }

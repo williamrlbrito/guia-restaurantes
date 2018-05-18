@@ -16,4 +16,22 @@ class  AuthController extends Controller
 
         return response()->json($user);
     }
+
+    public function changePassword(Request $request)
+    {   
+        $rules = [
+            'password' => 'required|min:6',
+            'password_confirmation' => 'same:password'
+        ];
+
+        $this->validate($request, $rules);
+
+        $user = User::where('id', $request->user()->id)
+            ->with(['restaurant'])
+            ->first();
+
+        $user->update($request->all());
+
+        return response()->json($user);
+    }
 }
