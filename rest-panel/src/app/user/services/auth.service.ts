@@ -21,4 +21,12 @@ export class AuthService extends AppHttpService {
                 return res.json() || {};
             });
     }
+
+    editProfile(data: any){
+        let observable = this.http.post(this.url + '/edit-profile', data, {headers: this.header});
+        return observable.toPromise()
+            .then((res) => {
+                return res.json() || {};
+            });
+    }
 }

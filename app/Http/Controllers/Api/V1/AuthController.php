@@ -30,7 +30,34 @@ class  AuthController extends Controller
             ->with(['restaurant'])
             ->first();
 
-        $user->update($request->all());
+        $data = [
+            'password' => $request->input('password')
+        ];
+
+        $user->update($data);
+
+        return response()->json($user);
+    }
+
+    public function editProfile(Request $request)
+    {   
+        $rules = [
+            'name' => 'required|min:3',
+            'email' => 'required|email'
+        ];
+
+        $this->validate($request, $rules);
+
+        $user = User::where('id', $request->user()->id)
+            ->with(['restaurant'])
+            ->first();
+
+        $data = [
+            'name' => $request->input('name'),
+            'email' => $request->input('email')
+        ];
+
+        $user->update($data);
 
         return response()->json($user);
     }
