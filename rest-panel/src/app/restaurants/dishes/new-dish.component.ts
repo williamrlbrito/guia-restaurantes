@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as jQuery from 'jquery';
 import {Router} from "@angular/router";
 import { AppHttpService } from '../../app-http.service';
-import { DishesService } from './dishes.service';
+import { DishesService } from '../services/dishes.service';
 
 @Component({
     selector: 'app-new-dish',

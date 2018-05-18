@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import * as jQuery from 'jquery';
 import {Router, ActivatedRoute} from "@angular/router";
-import { DishesService } from './dishes.service';
+import { DishesService } from '../services/dishes.service';
 
 @Component({
     selector: 'app-edit-dish',

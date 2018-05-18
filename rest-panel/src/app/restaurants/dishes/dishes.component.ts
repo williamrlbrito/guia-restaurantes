@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DishesService } from './dishes.service';
+import { DishesService } from '../services/dishes.service';
 import { AppHttpService } from '../../app-http.service';
 
 @Component({

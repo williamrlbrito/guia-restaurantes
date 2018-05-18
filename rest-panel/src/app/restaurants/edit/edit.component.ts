@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppHttpService} from "../../app-http.service";
-import {RestaurantService} from "../restaurant.service";
+import {RestaurantService} from "../services/restaurant.service";
 import * as jQuery from 'jquery';
 
 @Component({

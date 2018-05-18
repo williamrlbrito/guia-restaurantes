@@ -3,17 +3,15 @@ import {CommonModule} from "@angular/common";
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from "@angular/forms"
 
-import {DashboardComponent} from "./dashboard.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
 import {EvaluationComponent} from "./dashboard/evaluation.component";
 
 import {DishesComponent} from "./dishes/dishes.component";
 import {NewDishComponent} from "./dishes/new-dish.component";
 import {EditDishComponent} from "./dishes/edit-dish.component";
 import {EditComponent} from "./edit/edit.component";
-import {PasswordComponent} from "./password/password.component";
-import {ProfileComponent} from "./profile/profile.component";
-import {RestaurantService} from "./restaurant.service";
-import {DishesService} from './dishes/dishes.service';
+import {RestaurantService} from "./services/restaurant.service";
+import {DishesService} from './services/dishes.service';
 
 
 const appRoutes: Routes = [
@@ -30,9 +28,7 @@ const appRoutes: Routes = [
             {path: 'edit/:id', component: EditDishComponent}
         ]
     },
-    {path: 'edit', component: EditComponent},
-    {path: 'password', component: PasswordComponent},
-    {path: 'profile', component: ProfileComponent}
+    {path: 'edit', component: EditComponent}
 ];
 
 @NgModule({
@@ -47,9 +43,7 @@ const appRoutes: Routes = [
         DishesComponent,
         NewDishComponent,
         EditDishComponent,
-        EditComponent,
-        PasswordComponent,
-        ProfileComponent
+        EditComponent
     ],
     providers: [
         RestaurantService,
