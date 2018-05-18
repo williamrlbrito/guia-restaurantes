@@ -1,7 +1,10 @@
 import { Injectable,  EventEmitter } from '@angular/core';
 import { AppHttpService } from '../../app-http.service';
 
+import 'rxjs/add/operator/toPromise';
+
 @Injectable()
+
 export class DishesService extends AppHttpService {
     eventEmitter: EventEmitter<any> = new EventEmitter;
 
@@ -10,11 +13,7 @@ export class DishesService extends AppHttpService {
     }
 
     update(id: number, data: object) {
-        return this.http
-            .post(this.url + '/' + id, data, {headers: this.header})
-            .toPromise()
-            .then((res) => {
-                return res.json() || {};
-            });
+        let observable = this.http.post(this.url + '/' + id, data, {headers: this.header})
+        return this.toPromise(observable);
     }
 }

@@ -1,7 +1,10 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { AppHttpService } from "../../app-http.service";
 
+import 'rxjs/add/operator/toPromise';
+
 @Injectable()
+
 export class AuthService extends AppHttpService {
     eventEmitter: EventEmitter<any> = new EventEmitter();
 
@@ -14,19 +17,13 @@ export class AuthService extends AppHttpService {
             .list();
     }
 
-    changePassword(data: any){
+    changePassword(data) {
         let observable = this.http.post(this.url + '/change-password', data, {headers: this.header});
-        return observable.toPromise()
-            .then((res) => {
-                return res.json() || {};
-            });
+        return this.toPromise(observable);
     }
 
-    editProfile(data: any){
+    editProfile(data) {
         let observable = this.http.post(this.url + '/edit-profile', data, {headers: this.header});
-        return observable.toPromise()
-            .then((res) => {
-                return res.json() || {};
-            });
+        return this.toPromise(observable);
     }
 }

@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import {environment} from "../environments/environment";
+import {Router} from '@angular/router';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -10,7 +11,7 @@ export class AppHttpService {
     protected url: string;
     protected header: Headers;
 
-    constructor(protected http: Http) {
+    constructor(protected http: Http, private router: Router) {
         this.setAccessToken();
     }
 
@@ -39,50 +40,51 @@ export class AppHttpService {
             });
         }
         
-        return this.http.get(url, {headers: this.header})
-            .toPromise()
-            .then((res) => {
-                return res.json() || {};
-            });
+        let observable = this.http.get(url, {headers: this.header})
+        return this.toPromise(observable);    
     }
 
     view(id: number) {
-        return this
-            .http
-            .get(this.url + '/' + id, {headers: this.header})
-            .toPromise()
-            .then((res) => {
-                return res.json() || {};
-            });
+        let observable = this.http.get(this.url + '/' + id, {headers: this.header})
+        return this.toPromise(observable);
     }
 
     update(id: number, data: object) {
-        return this
-            .http
-            .put(this.url + '/' + id, data, {headers: this.header})
-            .toPromise()
-            .then((res) => {
-                return res.json() || {};
-            });
+        let observable = this.http.put(this.url + '/' + id, data, {headers: this.header})
+        return this.toPromise(observable);
     }
 
     insert(data: object) {
-        return this
-            .http
-            .post(this.url, data, {headers: this.header})
-            .toPromise()
-            .then((res) => {
-                return res.json() || {};
-            });
+        let observable = this.http.post(this.url, data, {headers: this.header})
+        return this.toPromise(observable);
     }
 
     delete(id: number) {
-        return this
-            .http
-            .delete(this.url + '/' + id, {headers: this.header})
-            .toPromise()
+        let observable = this.http.delete(this.url + '/' + id, {headers: this.header});
+        return this.toPromise(observable);
+    }
+
+    protected toPromise(request) {
+        return request.toPromise()
             .then((res) => {
-                return res.json() || {};
+                return res.json() || {}
+            })
+            .catch((err) => {
+                let message = 'Algo deu errado no servidor, informe o erro ' + err.status + ' ao administrador';
+                if (err.status === 401) {
+                    message = 'Você não tem permissão para ver isso, informe um usuário e senha válidos';
+                    this.router.navigate(['/login']);
+                }
+
+                if (err.status === 422) {
+                    message = 'Falha de validação, verifique os campos';
+                }
+
+                if (err.status === 404) {
+                    message = 'Impossível se conectar ao servidor, verifique sua conexão ou tente novamente em alguns minutos';
+                }
+
+                window.Materialize.toast(message, 3000, 'red');
             });
     }
 }
