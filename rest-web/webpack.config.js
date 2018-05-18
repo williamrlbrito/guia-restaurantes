@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const fs = require('fs');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -396,6 +397,12 @@ module.exports = {
     ]
   },
   "plugins": [
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery",
+      Hammer: "hammerjs/hammer"
+    }),
     new NoEmitOnErrorsPlugin(),
     new ScriptsWebpackPlugin({
       "name": "scripts",
