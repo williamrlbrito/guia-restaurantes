@@ -4,6 +4,19 @@
             <div class="card-content">
                 <span class="card-title">Autenticação</span>
 
+                <form (submit)="login($event)">
+                    <div class="input-field">
+                        <input type="email" id="username" name="username" [(ngModel)]="user.username" placeholder="Seu email">
+                    </div>
+
+                    <div class="input-field">
+                        <input type="password" id="password" name="password" [(ngModel)]="user.password" placeholder="Sua senha">
+                    </div>
+
+                    <div class="input-field">
+                        <input type="submit" value="Acessar" class="btn">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
