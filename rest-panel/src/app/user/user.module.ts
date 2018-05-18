@@ -7,12 +7,14 @@ import {PasswordComponent} from "./password/password.component";
 import {ProfileComponent} from "./profile/profile.component";
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 const appRoutes: Routes = [
     {path: 'password', component: PasswordComponent},
     {path: 'profile', component: ProfileComponent},
-    {path: 'login', component: LoginComponent}
+    {path: 'login', component: LoginComponent},
+    {path: 'logout', component: LogoutComponent}
 ];
 
 @NgModule({
@@ -24,7 +26,8 @@ const appRoutes: Routes = [
     declarations: [
         PasswordComponent,
         ProfileComponent,
-        LoginComponent
+        LoginComponent,
+        LogoutComponent
     ],
     providers: [
         AuthService

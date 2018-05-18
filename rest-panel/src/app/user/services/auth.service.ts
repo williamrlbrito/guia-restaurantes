@@ -33,4 +33,9 @@ export class AuthService extends AppHttpService {
         let observable = this.http.post(environment.server_url + '/oauth/token', data);  
         return this.toPromise(observable);
     }
+
+    logout() {
+        let observable = this.http.get(this.url + '/logout', {headers: this.header});
+        return this.toPromise(observable);
+    }
 }

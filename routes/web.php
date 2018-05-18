@@ -40,4 +40,5 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'Api\V1', 'middleware' => ['au
     $app->get('auth/me', 'AuthController@me');
     $app->post('auth/change-password', 'AuthController@changePassword');
     $app->post('auth/edit-profile', 'AuthController@editProfile');
+    $app->get('auth/logout', 'AuthController@logout');
 });

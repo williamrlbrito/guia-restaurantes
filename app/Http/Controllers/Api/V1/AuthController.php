@@ -61,4 +61,12 @@ class  AuthController extends Controller
 
         return response()->json($user);
     }
+
+    public function logout() 
+    {
+        if (\Auth::check()) {
+            \Auth::user()->oauthAccessToken()->delete();
+        }
+        return response()->json(['status' => 'success']);
+    }
 }
