@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { environment } from "../../../environments/environment";
 
 @Component({
     selector: 'app-login',
@@ -32,10 +33,10 @@ export class LoginComponent {
 
         let data = {
             grant_type: 'password',
-            client_id: '',
-            client_secret: '',
-            username: '',
-            password: '',
+            client_id: environment.client_id,
+            client_secret: environment.client_secret,
+            username: this.user.username,
+            password: this.user.password,
             scope: ''
         }
 
