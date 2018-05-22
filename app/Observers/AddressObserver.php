@@ -2,7 +2,8 @@
 
 namespace App\Observers;
 
-use App\Address;    
+use App\Address;   
+use AnthonyMartin\GeoLocation\GeoLocation;
 
 class AddressObserver
 {
@@ -22,9 +23,17 @@ class AddressObserver
     {
         $location = $model->address . ',' .
             $model->number . ',' .
-            $model->city . ',' .
             $model->neighborhood . ',' .
+            $model->city . ',' .
             $model->state . ',' .
             $model->cep;
+
+        $response = GeoLocation::getGeoCodeFromGoogle($location);
+
+        if (!empty($response->results) && is_array($response->results)) {
+            $result = array_pop($response->results);
+            $model->latitude = $result->geometry->location->lat;
+            $model->longitude = $result->geometry->location->lng; 
+        }
     }
 }
