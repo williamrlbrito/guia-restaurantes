@@ -16,6 +16,10 @@ $app->get('/', function () use ($app) {
     return view('teste');
 });
 
+$app->group(['prefix' => 'api/v1', 'namespace' => 'Api\V1'], function () use ($app) {
+    $app->get('restaurants/by-address', 'RestaurantController@getByAddress');
+});
+
 $app->group(['prefix' => 'api/v1', 'namespace' => 'Api\V1', 'middleware' => ['auth']], function () use ($app) {
     $app->get('restaurants', 'RestaurantController@index');
     $app->get('restaurants/{id:[0-9]+}', 'RestaurantController@show');

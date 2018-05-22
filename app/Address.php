@@ -16,4 +16,9 @@ class Address extends Model
         'state',
         'complement'
     ];
+
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
 }
