@@ -9,7 +9,7 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class RestaurantDescribeComponent {
     id: number;
-    restaurants: any = {};
+    restaurant: any = {};
     dishes: any = {data: []};
     photos: any;
     viewPhone: boolean = false;
@@ -30,7 +30,7 @@ export class RestaurantDescribeComponent {
             }
 
             this.appHttpService.builder('restaurants')
-                .view(id).then(res => this.restaurants = res);
+                .view(id).then(res => this.restaurant = res);
 
             this.appHttpService.builder('dishes')
                 .list(options).then(res => this.dishes = res);
@@ -68,7 +68,7 @@ export class RestaurantDescribeComponent {
     }
 
     classToVotes(vote) {
-        if (this.restaurants.points >= vote) {
+        if (this.restaurant.points >= vote) {
             return 'amber-text';
         }
 
