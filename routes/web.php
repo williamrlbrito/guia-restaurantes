@@ -18,6 +18,8 @@ $app->get('/', function () use ($app) {
 
 $app->group(['prefix' => 'api/v1', 'namespace' => 'Api\V1'], function () use ($app) {
     $app->get('restaurants/by-address', 'RestaurantController@getByAddress');
+    $app->post('restaurants/vote', 'RestaurantVoteController@store');
+    $app->get('restaurants/{id:[0-9]+}/view-phone', 'RestaurantController@viewPhone');
 });
 
 $app->group(['prefix' => 'api/v1', 'namespace' => 'Api\V1', 'middleware' => ['auth']], function () use ($app) {
