@@ -20,11 +20,14 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'Api\V1'], function () use ($a
     $app->get('restaurants/by-address', 'RestaurantController@getByAddress');
     $app->post('restaurants/vote', 'RestaurantVoteController@store');
     $app->get('restaurants/{id:[0-9]+}/view-phone', 'RestaurantController@viewPhone');
+
+    $app->get('restaurants/{id:[0-9]+}', 'RestaurantController@show');
+    $app->get('dishes', 'DishController@index');
+    $app->get('restaurants/{id:[0-9]+}/photos', 'RestaurantPhotoController@index');
 });
 
 $app->group(['prefix' => 'api/v1', 'namespace' => 'Api\V1', 'middleware' => ['auth']], function () use ($app) {
     $app->get('restaurants', 'RestaurantController@index');
-    $app->get('restaurants/{id:[0-9]+}', 'RestaurantController@show');
     $app->post('restaurants', 'RestaurantController@store');
     $app->post('restaurants/{id:[0-9]+}', 'RestaurantController@update');
     $app->put('restaurants/{id:[0-9]+}', 'RestaurantController@update');
@@ -33,11 +36,9 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'Api\V1', 'middleware' => ['au
     $app->post('restaurants/{id:[0-9]+}/address', 'RestaurantController@address');
     $app->post('restaurants/{id:[0-9]+}/upload', 'RestaurantController@upload');
 
-    $app->get('restaurants/{id:[0-9]+}/photos', 'RestaurantPhotoController@index');
     $app->post('restaurants/photos', 'RestaurantPhotoController@store');
     $app->delete('restaurants/photos/{id:[0-9]+}', 'RestaurantPhotoController@destroy');
 
-    $app->get('dishes', 'DishController@index');
     $app->get('dishes/{id:[0-9]+}', 'DishController@show');
     $app->post('dishes', 'DishController@store');
     $app->post('dishes/{id:[0-9]+}', 'DishController@update');
