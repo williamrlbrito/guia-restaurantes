@@ -24,6 +24,8 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'Api\V1'], function () use ($a
     $app->get('restaurants/{id:[0-9]+}', 'RestaurantController@show');
     $app->get('dishes', 'DishController@index');
     $app->get('restaurants/{id:[0-9]+}/photos', 'RestaurantPhotoController@index');
+
+    $app->post('auth/register', 'AuthController@register');
 });
 
 $app->group(['prefix' => 'api/v1', 'namespace' => 'Api\V1', 'middleware' => ['auth']], function () use ($app) {
