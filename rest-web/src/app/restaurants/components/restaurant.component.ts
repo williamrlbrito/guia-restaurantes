@@ -32,6 +32,10 @@ export class RestaurantComponent {
                 this.restaurants = res.restaurants;
                 this.status = res.status;
 
+                if (this.status === 'success' && this.restaurants.length ===0) {
+                    this.status = 'error';  
+                }
+
                 let body = jQuery("html, body");
                 body.stop().animate({scrollTop: 300}, 500, 'swing');
             });

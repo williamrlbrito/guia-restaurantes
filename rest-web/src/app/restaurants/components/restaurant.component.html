@@ -25,23 +25,23 @@
 </div>
 
 <div class="row">
-    <div class="col s12">
-        <div class="card horizontal">
+    <div class="col s12" *ngIf="status === 'success'">
+        <div class="card horizontal" *ngFor="let restaurant of restaurants">
             <div class="card-image">
-                <img src="/assets/pizza.jpg">
+                <img src="{{ restaurant.restaurant.photo_full_url }}">
             </div>
             <div class="card-stacked">
                 <div class="card-content">
-                    <span class="card-title">Nome do restaurante</span>
-                    <p>dnsdndnnds,mnd,smnd,smnd,msnd,msnd,msnd,mn</p>
+                    <span class="card-title">{{ restaurant.restaurant.name }}</span>
+                    <p>{{ restaurant.restaurant.description }}</p>
                 </div>
                 <div class="card-action">
-                    <a [routerLink]="['/restaurant/1']">+ Detalhes</a>
+                    <a [routerLink]="['/restaurant/' + restaurant.restaurant.id]">+ Detalhes</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col s12 card amber center-align card-status">
+    <div class="col s12 card amber center-align card-status" *ngIf="status === 'error'">
         <div class="content">
             Nenhum restaurante encontrado
         </div>
